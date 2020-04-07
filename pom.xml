@@ -8,5 +8,12 @@
     <artifactId>gb-spring-part-one</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <jdk.version>1.8</jdk.version>
+        <maven.compiler.source>${jdk.version}</maven.compiler.source>
+        <maven.compiler.target>${jdk.version}</maven.compiler.target>
+        <!-- it is required in order to exclude encoding warnings during project building -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 </project>
