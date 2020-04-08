@@ -1,4 +1,4 @@
-package ru.geekbrains;
+package ru.geekbrains.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,8 @@ public class WelcomeController {
 
     @GetMapping("/welcome")
     public String welcome(Model model) {
-        model.addAttribute("helloText", "Hi from MVC controller!!!");
+        model.addAttribute("helloText",
+                "Добро пожаловать в наш замечательный магазин бытовой техники!");
         return "welcome";
     }
 }

@@ -2,7 +2,7 @@
 <head>
 <!--    <meta charset="UTF-8">-->
 <!--    <link rel="stylesheet" type="text/css" href="style.css">-->
-    <title>Главная</title>
+    <title>Product_form</title>
 </head>
 <div class="container">
     <header>
@@ -19,8 +19,16 @@
         </div>
     </header>
     <body>
-    <h1>Интернет-магазин Бытовая техника.RU</h1>
-    <h2 th:text="${helloText}"></h2>
+        <h1>Добавить товар</h1>
+        <form th:action="@{/product/form}" th:object="${product}" method="post">
+            <legend><h2>Заполните форму</h2></legend>
+            <p>Title <input th:field="*{title}" class="contacts__input" type="text" placeholder="Insert title" style="margin-left:15px;"></p>
+            <p>Price <input th:field="*{price}" class="contacts__input contacts__input__email" type="text" placeholder="Insert price" style="margin-left:2px;"></p>
+            <div class="contacts__buttons__div">
+                <button type="submit">Отправить</button>
+                <button type="reset">Очистить</button>
+            </div>
+        </form>
     </body>
     <footer>
         <p>&copy; Все права защищены</p>

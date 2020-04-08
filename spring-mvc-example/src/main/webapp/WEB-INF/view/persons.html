@@ -5,11 +5,13 @@
 <a th:href="@{/person/form}">Create person</a>
 <table>
     <tr>
+        <th>id</th>
         <th>First name</th>
         <th>Last name</th>
     </tr>
 
     <tr th:each="person : ${persons}">
+        <td th:text="${person.id}">id</td>
         <td th:text="${person.firstName}">FN</td>
         <td th:text="${person.lastName}">LN</td>
     </tr>
