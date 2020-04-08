@@ -1,6 +1,5 @@
-/client/target/
-/server/target/
-/shared/target/
+/lesson2/target/
+/spring-mvc-example/target/
 /target/
 /.idea/
 

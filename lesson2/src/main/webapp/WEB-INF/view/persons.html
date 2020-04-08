@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>Person list</h1>
+
+<a th:href="@{/person/form}">Create person</a>
+<table>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+    </tr>
+
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.firstName}">FN</td>
+        <td th:text="${person.lastName}">LN</td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -6,8 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="gb-spring-part-one" />
+        <module name="lesson2" />
+        <module name="spring-mvc-example" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lesson1" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

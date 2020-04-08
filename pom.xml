@@ -6,7 +6,12 @@
 
     <groupId>ru.geekbrains</groupId>
     <artifactId>gb-spring-part-one</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>lesson2</module>
+        <module>spring-mvc-example</module>
+    </modules>
 
     <properties>
         <jdk.version>1.8</jdk.version>
