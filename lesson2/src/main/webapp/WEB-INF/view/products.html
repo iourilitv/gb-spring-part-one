@@ -26,26 +26,11 @@
                 <th>price</th>
             </tr>
 
-<!--            <tr th:each="product : ${products}">-->
-<!--                <td th:text="${product.id}">id</td>-->
-<!--                <td th:text="${product.title}">title</td>-->
-<!--                <td th:text="${product.price}">price</td>-->
-<!--            </tr>-->
-<!--            <tr th:each="entry, stats : ${products}" th:with="product=${entry.value}">-->
             <tr th:each="entry : ${products}" th:with="product=${entry.value}">
                 <td th:text="${product.id}">id</td>
                 <td th:text="${product.title}">title</td>
                 <td th:text="${product.price}">price</td>
             </tr>
-<!--            <tr th:each="entry, stats : ${usersMap}" th:with="user=${entry.value}">-->
-<!--                <td th:text="${stats.index + 1}">1</td>-->
-<!--                <td th:text="${entry.key}">100</td>-->
-<!--                <td th:text="${user.firstName}">John</td>-->
-<!--                <td th:text="${user.lastName}">Doe</td>-->
-<!--                <td th:text="${user.email}">john.doe@example.com</td>-->
-<!--                <td th:text="${user.age}">27</td>-->
-<!--                <td th:text="${#dates.format(user.created, 'MMMM dd, yyyy')}">January 15, 2020</td>-->
-<!--            </tr>-->
         </table>
     </body>
     <footer>
