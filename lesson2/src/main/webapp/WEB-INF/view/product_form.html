@@ -23,7 +23,7 @@
         <form th:action="@{/product/form}" th:object="${product}" method="post">
             <legend><h2>Заполните форму</h2></legend>
             <p>Title <input th:field="*{title}" class="contacts__input" type="text" placeholder="Insert title" style="margin-left:15px;"></p>
-            <p>Price <input th:field="*{price}" class="contacts__input contacts__input__email" type="text" placeholder="Insert price" style="margin-left:2px;"></p>
+            <p>Price <input th:field="*{price}" class="contacts__input contacts__input__email" type="number" placeholder="Insert price" style="margin-left:2px;"></p>
             <div class="contacts__buttons__div">
                 <button type="submit">Отправить</button>
                 <button type="reset">Очистить</button>

@@ -15,10 +15,15 @@ public class ProductRepository {
 
     private Map<Integer, Product> products = Collections.synchronizedMap(new HashMap<>());
 
+//    public ProductRepository() {
+//        insert(new Product("good1", "120"));
+//        insert(new Product("good2", "10"));
+//        insert(new Product("good3", "1005"));
+//    }
     public ProductRepository() {
-        insert(new Product("good1", "120"));
-        insert(new Product("good2", "10"));
-        insert(new Product("good3", "1005"));
+        insert(new Product("good1", 120));
+        insert(new Product("good2", 10));
+        insert(new Product("good3", 1005));
     }
 
     public void insert(Product product) {

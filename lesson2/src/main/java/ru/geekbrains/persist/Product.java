@@ -4,13 +4,17 @@ public class Product {
 
     private int id;
     private String title;
-//    private float price;
-    private String price;
+//    private String price;
+    private int price;
 
     public Product() {
     }
 
-    public Product(String title, String price) {
+//    public Product(String title, String price) {
+//        this.title = title;
+//        this.price = price;
+//    }
+    public Product(String title, int price) {
         this.title = title;
         this.price = price;
     }
@@ -31,11 +35,18 @@ public class Product {
         this.title = title;
     }
 
-    public String getPrice() {
+//    public String getPrice() {
+//        return price;
+//    }
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+//    public void setPrice(String price) {
+//        this.price = price;
+//    }
+    public void setPrice(int price) {
         this.price = price;
     }
+
 }

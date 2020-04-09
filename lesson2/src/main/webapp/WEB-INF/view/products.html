@@ -31,7 +31,8 @@
 <!--                <td th:text="${product.title}">title</td>-->
 <!--                <td th:text="${product.price}">price</td>-->
 <!--            </tr>-->
-            <tr th:each="entry, stats : ${products}" th:with="product=${entry.value}">
+<!--            <tr th:each="entry, stats : ${products}" th:with="product=${entry.value}">-->
+            <tr th:each="entry : ${products}" th:with="product=${entry.value}">
                 <td th:text="${product.id}">id</td>
                 <td th:text="${product.title}">title</td>
                 <td th:text="${product.price}">price</td>
