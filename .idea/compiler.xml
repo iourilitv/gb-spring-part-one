@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-mvc-example" />
-        <module name="lesson2" />
+        <module name="class-spring-mvc-example" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
