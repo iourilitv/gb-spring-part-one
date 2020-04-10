@@ -1,0 +1,24 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate_lesson_1?createDatabaseIfNotExist=true&amp;allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+        <property name="connection.pool_size">1</property>
+        <property name="current_session_context_class">thread</property>
+
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.jdbc.batch_size">10</property>
+
+        <mapping class="ru.geekbrains.persist.Person"/>
+        <mapping class="ru.geekbrains.persist.Contact"/>
+    </session-factory>
+</hibernate-configuration>
