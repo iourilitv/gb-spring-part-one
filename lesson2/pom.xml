@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>class-spring-mvc-example</module>
+        <module>hw</module>
     </modules>
 
     <artifactId>lesson2</artifactId>
