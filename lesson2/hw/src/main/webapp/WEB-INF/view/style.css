@@ -1,0 +1,305 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: #f8f8f8;
+}
+
+.container {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+h1 {
+	margin: 10px 0 10px 50px;
+}
+
+h2 {
+	color: black;
+	font-size : 18px;
+	font-style: bold;
+	background-color: #eaeaea;
+	text-align: left;
+	padding: 5px 0 5px 30px;
+	vertical-align: middle;
+}
+
+h3 {
+	margin: 5px 0 5px 20px;
+}
+
+p {
+	margin: 10px;
+	color: #707070;
+	font-size : 18px;
+	line-height: 20px;
+}
+
+p:first-letter {
+	color: purple;
+	font-family: Trebuchet MS, sans-serif;
+	font-size : 32px;
+	font-style: bold;
+	font-style: italic;
+}
+
+li {
+	margin: 10px 20px 10px 100px;
+}
+
+header {
+	height: 80px;
+	padding: 10px;
+	background-color: #f3f3f3;
+	border-bottom: 1px solid #AAA;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url("images/header-bg.jpg");
+}
+
+button {
+	margin: 10px;
+	padding: 5px;
+}
+
+.header__div {
+	width: 60%;
+}
+
+.main_logo {
+	padding-right: 2px;
+	margin-top: 5px;
+	float: left;
+	clear: both;
+}
+
+.menu {
+	list-style-type: none;
+	padding: 0px 30px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.menu__li {
+	margin: 0;
+}
+
+.menu__link {
+	color: #f0a;
+	font-family: Geneva, Verdana, sans-serif;
+	font-style: italic;
+	font-size: 15px ;
+	text-decoration: none;
+}
+
+.menu__link:hover {
+	color: purple;
+}
+
+.catalog__div {
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: space-around;*/
+	justify-content: center;
+	margin-left: 10px;
+}
+
+.catalog__good {
+	width: 225px;
+	margin: 10px;
+}
+
+.catalog__good__img {
+	width: 220px;
+}
+
+.catalog__good__img,
+.good__img {
+	border: 2px solid darkgray;
+}
+
+.catalog__good__img:hover,
+.good__img:hover {
+	border-color: transparent;
+}
+
+/*.good__h2 {
+	color: black;
+	font-size : 18px;
+	font-style: bold;
+	background-color: #eaeaea;
+	text-align: left;
+	padding: 5px 0 5px 20px;
+	vertical-align: middle;
+}*/
+
+.good__img_div {
+	width: 325px;
+	height: 325px;
+	float: left;
+	clear: both;
+}
+
+.good__img {
+	 width: 300px;
+}
+
+.good__short_desc_div {
+	min-height: 325px;
+}
+
+.good__short_desc__p {
+	color: #707070;
+	font-size : 14px;
+	font-style: italic;
+	line-height: 16px;
+	margin: 5px;
+}
+
+.good__buy_button_div {
+	width: 140px;
+	height: 70px;
+	border-radius: 30px 0 0 30px;
+	/*background-color: #f8f8f8;*/
+	background-color: #f1f1f8;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
+	float: right;
+	align-self: right;
+}
+
+.good__buy_button {
+    background-color: #CDF;
+    border-color:#306AB5;
+    /*border-color: #6F6;*/
+    border-style:solid;
+    /*border-width:1px;*/
+    border-width:2px;
+    border-radius: 10px;
+    color:purple;
+    cursor:pointer;
+    font-size:1.167em;
+    font-weight:bold;
+    line-height:1.429em;
+    padding:0.286em 1em 0.357em;
+    box-shadow: inset 0px 1px 3px 2px rgba(0, 0, 0, 0.4);
+    outline: none;
+}
+
+.good__buy_button:hover {
+    border-color:transparent;
+}
+
+.good__buy_button:active {
+	background-color: #BCCDFF;
+	border-color: #496;
+	border-width:1px;
+    font-size:1.15em;
+    line-height:1.41em;
+    box-shadow: inset 2px 3px 3px 2px rgba(0, 0, 0, 0.4);
+}
+
+/*.good__detailed_desc__p:first-letter, 
+.good__p:first-letter {
+	color: purple;
+	font-family: Trebuchet MS, sans-serif;
+	font-size : 32px;
+	font-style: bold;
+}*/
+
+.good__spec__ul {
+	/*margin-left: 100px;внимание! при обтекании. Сдвиг списка отсчитывается от блока с .*/
+}
+
+.good__spec__li {
+	color: #334355;
+	font-size : 20px;
+	font-weight: 200;
+	line-height: 20px;
+	text-align: left;
+	list-style-image: url("images/marker-oven.jpg");
+	margin: 5px 0 5px 100px;/*не работает при обтекании. Элемент не сдвигается.*/
+}
+
+.good__detailed_desc__p {
+	color: #484343;
+	font-size : 16px;
+	font-weight: 400;
+	line-height: 24px;
+	text-align: left;
+}
+
+.good__spec__table {
+	width: 100%;
+	border: 1px solid #eaeaea;
+}
+
+.good__spec__td1,
+.good__spec__td2,
+.good__spec__cspan {
+	width: 20%;
+	height: 30px;
+	border: 1px solid #eaeaea;
+	border-spacing: 1px;
+	background-color: #eaeaea;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.good__spec__td2 {
+	background-color: #fff;
+	font-weight: 500;
+}
+
+.good__spec__cspan {
+	width: 60%;
+}
+
+.good__spec__cspan:after {
+	content: "Эта характеристика отвечает за ";
+}
+
+tr:first-child .good__spec__td1 {/*Задать высоту для верхней строки таблицы, отличную от всех остальных.*/
+	height: 50px;
+}
+
+.contacts__buttons__div {
+	padding-bottom: 10px;
+}
+
+.contacts__input {
+	width: 250px; 
+	height: 22px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	color: #f0a;
+	font-family: Geneva, Verdana, sans-serif;
+	font-style: italic;
+	font-size: 15px ;
+	text-decoration: none;
+}
+
+.contacts__input__email:focus {
+	background-color: #f0a;
+	color: white;
+}
+
+.contacts__input:focus {
+	text-transform: capitalize;/*каждое слово должно начинаться с заглавной буквы, 
+	даже если пользователь будет вводить со строчной*/
+}
+
+footer {
+	height: 50px;
+	background-color: #f0f0f0;
+	border-top: 1px solid #AAA;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding-right: 290px;
+}
