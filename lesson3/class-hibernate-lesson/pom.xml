@@ -18,6 +18,30 @@
         <spring.version>5.2.0.RELEASE</spring.version>
     </properties>
 
+    <dependencies>
+        <!-- ядро Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.3.Final</version>
+        </dependency>
+        <!-- JDBC драйвер для работы с MySQL (применяем здесь)-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.16</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- JDBC драйвер для работы с PostgreSQL -->
+<!--        <dependency>-->
+<!--            <groupId>org.postgresql</groupId>-->
+<!--            <artifactId>postgresql</artifactId>-->
+<!--            <version>42.2.5</version>-->
+<!--        </dependency>-->
+
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -30,19 +54,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.4.3.Final</version>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.16</version>
-            <scope>runtime</scope>
-        </dependency>
-    </dependencies>
 </project>

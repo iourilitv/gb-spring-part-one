@@ -8,10 +8,11 @@ import java.util.List;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //поле в БД - первичный ключ
     private Long id;
 
 //    @Column(length = 255) //Не нужно, т.к. по умолчанию
+//    @Transient //если поле не нужно сохранять в БД
     @Column
     private String firstName;
 
@@ -22,8 +23,8 @@ public class Person {
     @Column
     private LocalDate birthday;
 
-    @OneToMany(
-            mappedBy = "person",
+    @OneToMany(//чтобы hibernate создал связь между таблицами, иначе создаст отдельную таблицу для связей
+            mappedBy = "person", //должно совпадать с полем в Contacts
             cascade = CascadeType.ALL
     )
     private List<Contact> contacts;
@@ -36,6 +37,11 @@ public class Person {
         this.lastName = lastName;
         this.birthday = birthday;
         this.contacts = contacts;
+    }
+
+    //конструктор для добавления person_id в таблицу contact
+    public Person(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

@@ -15,7 +15,8 @@ public class Contact {
     @Column
     private String info;
 
-    @ManyToOne
+    @ManyToOne //чтобы hibernate создал связь между таблицами, иначе создаст отдельную таблицу для связей
+//    @JoinColumn (name = "person_id" )
     private Person person;
 
     public Contact() {
@@ -58,7 +59,7 @@ public class Contact {
         this.person = person;
     }
 
-    @Override
+    @Override //вызывает зацикленность person<->contacts при печати contacts
     public String toString() {
         return "Contact{" +
                 "id=" + id +
@@ -67,4 +68,13 @@ public class Contact {
                 ", person=" + person +
                 '}';
     }
+//    @Override //Exception in thread "main" java.lang.NullPointerException
+//    public String toString() {
+//        return "Contact{" +
+//                "id=" + id +
+//                ", type='" + type + '\'' +
+//                ", info='" + info + '\'' +
+//                ", person_id=" + person.getId() +
+//                '}';
+//    }
 }
