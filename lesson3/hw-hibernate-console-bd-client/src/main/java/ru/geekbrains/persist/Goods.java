@@ -15,7 +15,11 @@ public class Goods {
     @Column
     private int price;
 
-    @ManyToOne
+    @ManyToOne(cascade = {
+            CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,
+            CascadeType.REFRESH
+    })
+    @JoinColumn (name = "buyer_id")
     private Buyer buyer;
 
     public Goods() {
@@ -58,15 +62,6 @@ public class Goods {
         this.buyer = buyer;
     }
 
-//    @Override //вызывает зацикливание пары buyer<->goods
-//    public String toString() {
-//        return "Goods{" +
-//                "id=" + id +
-//                ", title='" + title + '\'' +
-//                ", price=" + price +
-//                ", buyer=" + buyer +
-//                '}';
-//    }
     @Override
     public String toString() {
         return "Goods{" +
@@ -83,3 +78,14 @@ public class Goods {
     //Goods{id=35, title='good22', price=22, buyer_id=12}
     //Goods{id=36, title='good23', price=23, buyer_id=12}
 }
+
+
+//    @Override //вызывает зацикливание пары buyer<->goods
+//    public String toString() {
+//        return "Goods{" +
+//                "id=" + id +
+//                ", title='" + title + '\'' +
+//                ", price=" + price +
+//                ", buyer=" + buyer +
+//                '}';
+//    }

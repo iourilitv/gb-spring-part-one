@@ -17,10 +17,7 @@ public class Buyer {
     @Column
     private String lastName;
 
-    @OneToMany(
-            mappedBy = "buyer",
-            cascade = CascadeType.ALL
-    )
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
     private List<Goods> goodsList = new ArrayList<>();
 
     public Buyer() {
