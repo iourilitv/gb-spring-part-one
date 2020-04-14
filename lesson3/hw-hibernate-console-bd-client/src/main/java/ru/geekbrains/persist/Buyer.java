@@ -11,17 +11,12 @@ public class Buyer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column //появляются дубликаты при добавлении Buyer с id=null
     @Column(unique = true)
     private String firstName;
 
-//    @Column //появляются дубликаты при добавлении Buyer с id=null
     @Column(unique = true)
     private String lastName;
 
-//    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
-////    private List<Goods> goodsList = new ArrayList<>(); //тоже работает
-//    private List<Goods> goodsList;
     //***из примера Unidirectional @OneToMany class Post поле List<PostComment> comments
     // https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
     //Параметр orphanRemoval = true указывает, что все объекты Goods, которые

@@ -15,16 +15,8 @@ public class Goods {
     @Column
     private int price;
 
-    //***как в уроке 3 - поле person в классе Contact
     @ManyToOne
     private Buyer buyer;
-    //***мои изыскания
-//    @ManyToOne(cascade = {
-//            CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,
-//            CascadeType.REFRESH
-//    })
-//    @JoinColumn (name = "buyer_id")
-//    private Buyer buyer;
 
     public Goods() {
     }
@@ -72,24 +64,7 @@ public class Goods {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", price=" + price +
-//                ", buyer_id=" + buyer.getId() +
                 '}';
     }
-    //Goods{id=31, title='good11', price=11, buyer_id=11}
-    //Goods{id=32, title='good12', price=12, buyer_id=11}
-    //Goods{id=33, title='good13', price=13, buyer_id=11}
-    //Goods{id=34, title='good21', price=21, buyer_id=12}
-    //Goods{id=35, title='good22', price=22, buyer_id=12}
-    //Goods{id=36, title='good23', price=23, buyer_id=12}
+
 }
-
-
-//    @Override //вызывает зацикливание пары buyer<->goods
-//    public String toString() {
-//        return "Goods{" +
-//                "id=" + id +
-//                ", title='" + title + '\'' +
-//                ", price=" + price +
-//                ", buyer=" + buyer +
-//                '}';
-//    }

@@ -43,67 +43,7 @@ public class Controller {
         return new Buyer("Petr", "Petrov", goods);
     }
 
-//    public void insertBuyer(Buyer buyer) {
-//        //избежать добавления дубликатов
-//        Long id = findBuyerId(buyer);
-//        System.out.println("Long id = findBuyerId(buyer): " + id);
-//        boolean res = isBuyerNotExist(id);
-//        System.out.println("boolean res = isBuyerNotExist(id): " + res);
-//
-//        if(!em.getTransaction().isActive()) {
-//            em.getTransaction().begin();
-//        }
-//        try{
-//            //избежать добавления дубликатов
-//            if(res) {
-//                em.persist(buyer);
-//                em.getTransaction().commit();
-//            } else {
-//                return;
-//            }
-//        } catch(Exception e) {
-//            em.getTransaction().rollback();
-//        }
-//        //TODO только этим костылем удалось заполнить поле buyer_id в таблице goods
-//        Buyer buyerCopy = new Buyer();
-//        buyerCopy.setId(buyer.getId());
-//
-//        //добавляем копию в таблицу контактов
-//        buyer.getGoodsList().forEach(goods -> goods.setBuyer(buyerCopy));
-//        em.getTransaction().begin();
-//        try{
-//            em.getTransaction().commit();
-//        } catch(Exception e) {
-//            em.getTransaction().rollback();
-//        }
-//    }
-    // дубликатов нет, т.к. у Buyer поля firstName, lastName помечены @Column(unique = true)
-//    public void insertBuyer(Buyer buyer) {
-//        if(!em.getTransaction().isActive()) {
-//            em.getTransaction().begin();
-//        }
-//        try{
-//            em.persist(buyer);
-//            em.getTransaction().commit();
-//        } catch(Exception e) {
-//            em.getTransaction().rollback();
-//        }
-//        //TODO только этим костылем удалось заполнить поле buyer_id в таблице goods
-////        Buyer buyerCopy = new Buyer();
-////        buyerCopy.setId(buyer.getId());
-//        Buyer buyerCopy = em.find(Buyer.class, buyer.getId());//работает
-//
-//                //добавляем копию в таблицу контактов
-//        buyer.getGoodsList().forEach(goods -> goods.setBuyer(buyerCopy));
-//        em.getTransaction().begin();
-//        try{
-//            em.getTransaction().commit();
-//        } catch(Exception e) {
-//            em.getTransaction().rollback();
-//        }
-//    }
-    //TODO сохраняет в БД, но в таблице goods поля buyer_id пустое
-    // FIXED в Buyer см. поле goodsList
+    // FIXED в Buyer см. поле goodsList "сохраняет в БД, но в таблице goods поля buyer_id пустое"
     // дубликатов нет, т.к. у Buyer поля firstName, lastName помечены @Column(unique = true)
     void insertBuyer(Buyer buyer) {
         em.getTransaction().begin();
