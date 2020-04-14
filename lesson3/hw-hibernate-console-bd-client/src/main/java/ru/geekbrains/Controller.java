@@ -43,49 +43,77 @@ public class Controller {
         return new Buyer("Petr", "Petrov", goods);
     }
 
-    public void insertBuyer(Buyer buyer) {
-        //избежать добавления дубликатов
-        Long id = findBuyerId(buyer);
-        System.out.println("Long id = findBuyerId(buyer): " + id);
-        boolean res = isBuyerNotExist(id);
-        System.out.println("boolean res = isBuyerNotExist(id): " + res);
-
-        if(!em.getTransaction().isActive()) {
-            em.getTransaction().begin();
-        }
-        try{
-            //избежать добавления дубликатов
-            if(res) {
-                em.persist(buyer);
-                em.getTransaction().commit();
-            } else {
-                return;
-            }
-        } catch(Exception e) {
-            em.getTransaction().rollback();
-        }
-        //TODO только этим костылем удалось заполнить поле buyer_id в таблице goods
-        Buyer buyerCopy = new Buyer();
-        buyerCopy.setId(buyer.getId());
-        //добавляем копию в таблицу контактов
-        buyer.getGoodsList().forEach(goods -> goods.setBuyer(buyerCopy));
-        em.getTransaction().begin();
-        try{
-            em.getTransaction().commit();
-        } catch(Exception e) {
-            em.getTransaction().rollback();
-        }
-    }
-    //TODO сохраняет в БД, но в таблице goods поля buyer_id пустое
-//    void insertBuyer(Buyer buyer) {
+//    public void insertBuyer(Buyer buyer) {
+//        //избежать добавления дубликатов
+//        Long id = findBuyerId(buyer);
+//        System.out.println("Long id = findBuyerId(buyer): " + id);
+//        boolean res = isBuyerNotExist(id);
+//        System.out.println("boolean res = isBuyerNotExist(id): " + res);
+//
+//        if(!em.getTransaction().isActive()) {
+//            em.getTransaction().begin();
+//        }
+//        try{
+//            //избежать добавления дубликатов
+//            if(res) {
+//                em.persist(buyer);
+//                em.getTransaction().commit();
+//            } else {
+//                return;
+//            }
+//        } catch(Exception e) {
+//            em.getTransaction().rollback();
+//        }
+//        //TODO только этим костылем удалось заполнить поле buyer_id в таблице goods
+//        Buyer buyerCopy = new Buyer();
+//        buyerCopy.setId(buyer.getId());
+//
+//        //добавляем копию в таблицу контактов
+//        buyer.getGoodsList().forEach(goods -> goods.setBuyer(buyerCopy));
 //        em.getTransaction().begin();
+//        try{
+//            em.getTransaction().commit();
+//        } catch(Exception e) {
+//            em.getTransaction().rollback();
+//        }
+//    }
+    // дубликатов нет, т.к. у Buyer поля firstName, lastName помечены @Column(unique = true)
+//    public void insertBuyer(Buyer buyer) {
+//        if(!em.getTransaction().isActive()) {
+//            em.getTransaction().begin();
+//        }
 //        try{
 //            em.persist(buyer);
 //            em.getTransaction().commit();
 //        } catch(Exception e) {
 //            em.getTransaction().rollback();
 //        }
+//        //TODO только этим костылем удалось заполнить поле buyer_id в таблице goods
+////        Buyer buyerCopy = new Buyer();
+////        buyerCopy.setId(buyer.getId());
+//        Buyer buyerCopy = em.find(Buyer.class, buyer.getId());//работает
+//
+//                //добавляем копию в таблицу контактов
+//        buyer.getGoodsList().forEach(goods -> goods.setBuyer(buyerCopy));
+//        em.getTransaction().begin();
+//        try{
+//            em.getTransaction().commit();
+//        } catch(Exception e) {
+//            em.getTransaction().rollback();
+//        }
 //    }
+    //TODO сохраняет в БД, но в таблице goods поля buyer_id пустое
+    // FIXED в Buyer см. поле goodsList
+    // дубликатов нет, т.к. у Buyer поля firstName, lastName помечены @Column(unique = true)
+    void insertBuyer(Buyer buyer) {
+        em.getTransaction().begin();
+        try{
+            em.persist(buyer);
+            em.getTransaction().commit();
+        } catch(Exception e) {
+            em.getTransaction().rollback();
+        }
+    }
 
     private List<Buyer> getBuyersList() {
         return em.createQuery("from Buyer").getResultList();
@@ -98,11 +126,34 @@ public class Controller {
         return (List<Goods>)query.getResultList();
     }
 
+    // Exception in thread "main" javax.persistence.TransactionRequiredException: Executing an update/delete query
+//    public void deleteBuyerGoods(Buyer buyer) {
+//        Long id = findBuyerId(buyer);
+//        System.out.println("deleteBuyerGoods() - id: " + id);
+//        Query query = em.createQuery("delete from Goods g where g.buyer.id = :id");
+//        query.setParameter("id", id);
+//        query.executeUpdate();
+//    }
     public void deleteBuyerGoods(Buyer buyer) {
+        em.getTransaction().begin();
         Long id = findBuyerId(buyer);
-        Query query = em.createQuery("delete from Goods g where g.buyer.id = :id");
+        System.out.println("deleteBuyerGoods() - id: " + id);
+        Query query = em.createQuery("from Goods g where g.buyer.id = :id");
         query.setParameter("id", id);
-        query.executeUpdate();
+        List<Goods> goodsList = (List<Goods>)query.getResultList();
+        goodsList.forEach(goods -> {
+            goods.setBuyer(null);
+
+        });
+
+        em.getTransaction().commit();
+
+//        em.flush();
+        //Exception in thread "main" javax.persistence.TransactionRequiredException: no transaction is in progress
+
+//        Query query1 = em.createQuery("delete from Goods g where g.buyer.id = null ");
+//
+//        query1.executeUpdate();
     }
 
     public Long findBuyerId(Buyer buyer){

@@ -15,12 +15,16 @@ public class Goods {
     @Column
     private int price;
 
-    @ManyToOne(cascade = {
-            CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,
-            CascadeType.REFRESH
-    })
-    @JoinColumn (name = "buyer_id")
+    //***как в уроке 3 - поле person в классе Contact
+    @ManyToOne
     private Buyer buyer;
+    //***мои изыскания
+//    @ManyToOne(cascade = {
+//            CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,
+//            CascadeType.REFRESH
+//    })
+//    @JoinColumn (name = "buyer_id")
+//    private Buyer buyer;
 
     public Goods() {
     }
@@ -68,7 +72,7 @@ public class Goods {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", price=" + price +
-                ", buyer_id=" + buyer.getId() +
+//                ", buyer_id=" + buyer.getId() +
                 '}';
     }
     //Goods{id=31, title='good11', price=11, buyer_id=11}
