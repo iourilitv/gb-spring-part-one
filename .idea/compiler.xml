@@ -10,6 +10,7 @@
         <module name="class-hibernate-lesson" />
         <module name="hw" />
         <module name="class-spring-mvc-example" />
+        <module name="less4-hw" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
