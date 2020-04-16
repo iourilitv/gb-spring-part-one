@@ -1,6 +1,7 @@
 package ru.geekbrains.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 public class Product {
@@ -13,13 +14,18 @@ public class Product {
     private String title;
 
     @Column
-    private int price;
+//    private int price;
+    private BigDecimal price;
 
 
     public Product() {
     }
 
-    public Product(String title, int price) {
+//    public Product(String title, int price) {
+//        this.title = title;
+//        this.price = price;
+//    }
+    public Product(String title, BigDecimal price) {
         this.title = title;
         this.price = price;
     }
@@ -40,11 +46,18 @@ public class Product {
         this.title = title;
     }
 
-    public int getPrice() {
+//    public int getPrice() {
+//        return price;
+//    }
+
+//    public void setPrice(int price) {
+//        this.price = price;
+//    }
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
