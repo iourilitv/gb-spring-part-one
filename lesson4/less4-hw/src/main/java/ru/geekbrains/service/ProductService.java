@@ -39,12 +39,6 @@ public class ProductService {
         }
     }
 
-    //выбрасывает исключение и не создает бин при попытке добавить дубликат,
-    //т.к. поле title у Product уникально
-//    @Transactional
-//    public void insert(Product product) {
-//        productRepository.save(product);
-//    }
     @Transactional
     public void insert(Product product) {
         //если в БД нет дубликата, иначе - исключение и не создает бин,
