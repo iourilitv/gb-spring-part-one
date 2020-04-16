@@ -27,18 +27,6 @@ public class ProductService {
 
     //TODO for test only
     //наполняем БД заданным количеством продуктов
-//    private void fillDBWithTestData(int numbers) {
-//        List<Product> productList = new ArrayList<>();
-//        int i = 1;
-//        while(i <= numbers) {
-//            productList.add(new Product());
-//            productList.get(i - 1).setTitle("product_test_" + i);
-//            int i1 = i * 10 + i;
-//            productList.get(i - 1).setPrice(i1);
-//            insert(productList.get(i - 1));
-//            i++;
-//        }
-//    }
     private void fillDBWithTestData(int numbers) {
         List<Product> productList = new ArrayList<>();
         int i = 1;
@@ -77,11 +65,6 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-
-//    @Transactional(readOnly = true)
-//    public List<Product> getAllProductsByPriceBetween(int minVal, int maxVal) {
-//        return productRepository.filterProductsByPriceBetween(minVal, maxVal);
-//    }
     @Transactional(readOnly = true)
     public List<Product> getAllProductsByPriceBetween(BigDecimal minVal, BigDecimal maxVal) {
         return productRepository.filterProductsByPriceBetween(minVal, maxVal);

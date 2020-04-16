@@ -13,9 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("from Product p where p.title = :title")
     List<Product> getProductsByTitle(@Param("title") String title);
 
-//    @Query("from Product p where p.price between :minVal and :maxVal")
-//    List<Product> filterProductsByPriceBetween(@Param("minVal") int minVal,
-//                                            @Param("maxVal") int maxVal);
     @Query("from Product p where p.price between :minVal and :maxVal")
     List<Product> filterProductsByPriceBetween(@Param("minVal") BigDecimal minVal,
                                                @Param("maxVal") BigDecimal maxVal);

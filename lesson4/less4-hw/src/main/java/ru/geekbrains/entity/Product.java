@@ -14,17 +14,12 @@ public class Product {
     private String title;
 
     @Column
-//    private int price;
     private BigDecimal price;
 
 
     public Product() {
     }
 
-//    public Product(String title, int price) {
-//        this.title = title;
-//        this.price = price;
-//    }
     public Product(String title, BigDecimal price) {
         this.title = title;
         this.price = price;
@@ -46,13 +41,6 @@ public class Product {
         this.title = title;
     }
 
-//    public int getPrice() {
-//        return price;
-//    }
-
-//    public void setPrice(int price) {
-//        this.price = price;
-//    }
     public BigDecimal getPrice() {
         return price;
     }
