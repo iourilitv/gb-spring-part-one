@@ -117,6 +117,12 @@ button {
 	color: purple;
 }
 
+.welcome__div {
+	width: 70%;
+	margin: 10px auto;
+	padding-left: 30px;
+}
+
 .product__filler_div {
 	width: 60%;
 	margin: 10px auto;
@@ -126,6 +132,12 @@ button {
 
 .product__filler_label {
 	padding: 5px;
+}
+
+.product_form__div {
+	width: 60%;
+	margin: 10px auto;
+	padding-left: 30px;
 }
 
 .product_form__buttons__div { /* есть */
