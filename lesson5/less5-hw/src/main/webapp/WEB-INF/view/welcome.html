@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+    <title>Главная</title>
+</head>
+<div class="container">
+    <header>
+        <div class="header__div">
+            <div class="main_logo">
+                <a th:href="@{/welcome}"><img class="main_logo" th:src="@{/resources/images/main-logo.png}" alt="Лого"></a>
+            </div>
+            <p>Интернет-магазин Бытовая техника.RU. Телефон: +7 495 000-0000</p>
+            <ul class ="header__menu">
+                <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/welcome}">Главная</a></li>
+                <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/product}">Каталог</a></li>
+                <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/product/form}">Добавить товар</a></li>
+            </ul>
+        </div>
+    </header>
+    <body>
+    <h1>Интернет-магазин Бытовая техника.RU</h1>
+    <h2 th:text="${helloText}"></h2>
+    </body>
+    <footer>
+        <p>&copy; Все права защищены</p>
+    </footer>
+</div>
+</html>

@@ -1,0 +1,155 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: #f8f8f8;
+}
+
+.container { /* есть */
+	width: 1024px;
+	margin: 0 auto;
+}
+
+h1 {
+	margin: 10px 0 10px 50px;
+}
+
+h2 {
+	color: black;
+	font-size : 18px;
+	font-style: bold;
+	background-color: #eaeaea;
+	text-align: left;
+	padding: 5px 0 5px 30px;
+	vertical-align: middle;
+}
+
+h3 {
+	margin: 5px 0 5px 20px;
+}
+
+p {
+	margin: 10px;
+	color: #707070;
+	font-size : 18px;
+	line-height: 20px;
+}
+
+p:first-letter {
+	color: purple;
+	font-family: Trebuchet MS, sans-serif;
+	font-size : 32px;
+	font-style: bold;
+	font-style: italic;
+}
+
+li {
+	margin: 10px 20px 10px 100px;
+}
+
+header {
+	height: 80px;
+	padding: 10px;
+	background-color: #f3f3f3;
+	border-bottom: 1px solid #AAA;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url("images/header-bg.jpg");/* Не работает */
+}
+
+table {
+	margin: 20px auto;
+	width: 600px;
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid darkslategrey;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+th {
+	height: 50px;
+}
+
+button {
+	margin: 10px;
+	padding: 5px;
+}
+
+.header__div { /* есть */
+	width: 60%;
+}
+
+.main_logo { /* есть */
+	padding-right: 2px;
+	margin-top: 5px;
+	float: left;
+	clear: both;
+}
+
+.header__menu { /* есть */
+	list-style-type: none;
+	padding: 0px 30px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.header__menu__li { /* есть */
+	margin: 0;
+}
+
+.header__menu__link { /* есть */
+	color: #f0a;
+	font-family: Geneva, Verdana, sans-serif;
+	font-style: italic;
+	font-size: 15px ;
+	text-decoration: none;
+}
+
+.header__menu__link:hover { /* есть */
+	color: purple;
+}
+
+.product__filler_div {
+	width: 60%;
+	margin: 10px auto;
+	/*align-content: center;*/
+	padding-left: 30px;
+}
+
+.product__filler_label {
+	padding: 5px;
+}
+
+.product_form__buttons__div { /* есть */
+	padding-bottom: 10px;
+}
+
+.product_form__input { /* есть */
+	width: 250px; 
+	height: 22px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	color: #f0a;
+	font-family: Geneva, Verdana, sans-serif;
+	font-style: italic;
+	font-size: 15px ;
+	text-decoration: none;
+}
+
+footer {
+	height: 50px;
+	background-color: #f0f0f0;
+	border-top: 1px solid #AAA;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding-right: 290px;
+}
