@@ -4,6 +4,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/lesson2" />
     <file type="web" url="file://$PROJECT_DIR$/lesson4/less4-hw" />
+    <file type="web" url="file://$PROJECT_DIR$/lesson5/less5-hw" />
     <file type="web" url="file://$PROJECT_DIR$/spring-mvc-example" />
   </component>
   <component name="MavenProjectsManager">
