@@ -17,19 +17,26 @@
                 <button type="submit">Apply</button>
             </form>
         </div>
-        <table>
+        <table th:if="${productPage.hasContent()}">
             <tr>
                 <th>id</th>
                 <th>title</th>
                 <th>price</th>
             </tr>
 
-            <tr th:each="product : ${products}">
+<!--            <tr th:each="product : ${products}">-->
+            <tr th:each="product : ${productPage.content}">
                 <td th:text="${product.id}">id</td>
                 <td th:text="${product.title}">title</td>
                 <td th:text="${product.price}">price</td>
             </tr>
         </table>
+        <div th:unless="${productPage.hasContent()}" class="product_unless_div">
+            <h3>No data</h3>
+        </div>
+
+        <pag th:replace="fragments/pagination.html" :: pagination />
+
     </body>
 
     <footer th:replace="fragments/footer.html" :: footer />

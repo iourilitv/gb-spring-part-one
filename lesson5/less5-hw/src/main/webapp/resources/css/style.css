@@ -10,9 +10,11 @@ html {
 .container { /* есть */
 	width: 1024px;
 	margin: 0 auto;
+	flex-direction: column;
 }
 
 h1 {
+	/*width: inherit;*/
 	margin: 10px 0 10px 50px;
 }
 
@@ -120,14 +122,19 @@ button {
 .welcome__div {
 	width: 70%;
 	margin: 10px auto;
-	padding-left: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .product__filler_div {
 	width: 60%;
 	margin: 10px auto;
-	/*align-content: center;*/
-	padding-left: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .product__filler_label {
@@ -137,7 +144,11 @@ button {
 .product_form__div {
 	width: 60%;
 	margin: 10px auto;
-	padding-left: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .product_form__buttons__div { /* есть */
@@ -154,6 +165,38 @@ button {
 	font-style: italic;
 	font-size: 15px ;
 	text-decoration: none;
+}
+
+.product_unless_div {
+	width: 60%;
+	margin: 10px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.pagination__div {
+	width: 60%;
+	margin: 10px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
 }
 
 footer {

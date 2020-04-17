@@ -1,6 +1,8 @@
 package ru.geekbrains.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.geekbrains.entity.Product;
@@ -65,9 +67,23 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+//    @Transactional(readOnly = true)
+//    public List<Product> getAllProductsByPriceBetween(BigDecimal minVal, BigDecimal maxVal) {
+//        return productRepository.filterProductsByPriceBetween(minVal, maxVal);
+//    }
     @Transactional(readOnly = true)
-    public List<Product> getAllProductsByPriceBetween(BigDecimal minVal, BigDecimal maxVal) {
-        return productRepository.filterProductsByPriceBetween(minVal, maxVal);
+    public Page<Product> findAllByAgeBetween(
+            Optional<BigDecimal> min, Optional<BigDecimal> max, Pageable pageable) {
+        if (min.isPresent() && max.isPresent()) {
+            return productRepository.findAllByPriceBetween(min.get(), max.get(), pageable);
+        }
+        if (min.isPresent()) {
+            return productRepository.findAllByPriceGreaterThanEqual(min.get(), pageable);
+        }
+        if (max.isPresent()) {
+            return productRepository.findAllByPriceLessThanEqual(max.get(), pageable);
+        }
+        return productRepository.findAll(pageable);
     }
 
 }

@@ -1,6 +1,7 @@
 package ru.geekbrains.control;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,7 @@ import ru.geekbrains.service.ProductService;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/product")
@@ -22,23 +24,38 @@ public class ProductController {
         this.productService = productService;
     }
 
-    //@RequestParam(value = "maxPrice", required = false) - здесь работает только на
-    // "/product" - http://localhost:8080/app/product!
+//    //@RequestParam(value = "maxPrice", required = false) - здесь работает только на
+//    // "/product" - http://localhost:8080/app/product!
+//    @GetMapping
+//    public String allProductsBetween(
+//            @RequestParam(value = "minPrice", required = false) BigDecimal minPrice,
+//            @RequestParam(value = "maxPrice", required = false) BigDecimal maxPrice,
+//            Model model) {
+//        //проверка, чтобы обработать запрос с пустыми параметрами
+//        //например - http://localhost:8080/app/product?minPrice=&maxPrice=20
+//        if(minPrice == null) {
+//            minPrice = BigDecimal.ZERO;
+//        }
+//        if(maxPrice == null) {
+//            maxPrice = BigDecimal.valueOf(Long.MAX_VALUE);
+//        }
+//        model.addAttribute("products",
+//                productService.getAllProductsByPriceBetween(minPrice, maxPrice));
+//        return "products";
+//    }
     @GetMapping
-    public String allProductsBetween(
-            @RequestParam(value = "minPrice", required = false) BigDecimal minPrice,
-            @RequestParam(value = "maxPrice", required = false) BigDecimal maxPrice,
-            Model model) {
-        //проверка, чтобы обработать запрос с пустыми параметрами
-        //например - http://localhost:8080/app/product?minPrice=&maxPrice=20
-        if(minPrice == null) {
-            minPrice = BigDecimal.ZERO;
-        }
-        if(maxPrice == null) {
-            maxPrice = BigDecimal.valueOf(Long.MAX_VALUE);
-        }
-        model.addAttribute("products",
-                productService.getAllProductsByPriceBetween(minPrice, maxPrice));
+    public String allProducts(@RequestParam(value = "minPrice") Optional<BigDecimal> minPrice,
+                             @RequestParam(value = "maxPrice") Optional<BigDecimal> maxPrice,
+                             @RequestParam(value = "page") Optional<Integer> page,
+                             @RequestParam(value = "limit") Optional<Integer> limit,
+                             Model model) {
+        model.addAttribute("activePage", "Products");
+        model.addAttribute("productPage", productService.findAllByAgeBetween(
+                minPrice, maxPrice,
+                PageRequest.of(page.orElse(1) - 1, limit.orElse(5))
+        ));
+        model.addAttribute("minPrice", minPrice.orElse(null));
+        model.addAttribute("maxPrice", maxPrice.orElse(null));
         return "products";
     }
 
