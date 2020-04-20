@@ -51,10 +51,14 @@ public class ProductService {
         }
     }
 
+//    @Transactional
+//    public void update(Product product) {
+//        //FIXME нельзя использовать save для изменения данных
+//        productRepository.save(product);
+//    }
     @Transactional
     public void update(Product product) {
-        //FIXME нельзя использовать save для изменения данных
-        productRepository.save(product);
+        productRepository.update(product.getId(), product.getTitle(), product.getPrice());
     }
 
     @Transactional(readOnly = true)

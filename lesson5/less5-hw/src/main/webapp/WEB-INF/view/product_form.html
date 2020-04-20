@@ -8,7 +8,7 @@
     <header th:replace="fragments/header.html :: header (activePage=${activePage})"/>
 
     <body>
-        <div th:if="${product} == null" class="product_form__div">
+        <div th:if="${productId} == null" class="product_form__div">
 <!--            <div th:if="${product.content} == null" class="product_form__div">-->
             <h1>Добавить товар</h1>
             <form th:action="@{/product/form}" th:object="${product}" method="post">
@@ -21,20 +21,24 @@
                 </div>
             </form>
         </div>
-        <div th:unless="${product} == null" class="product_form__div">
+        <div th:unless="${productId} == null" class="product_form__div">
             <h1>Изменить товар</h1>
+            <h2>
+                <label th:text="'ID: ' + ${productId}"></label>
+            </h2>
             <form th:action="@{/product/form}" th:object="${product}" method="post">
-                <legend><h2>Измените форму</h2></legend>
-                <p>ID <input th:field="*{id}" type="text" th:text="1" class="product_form__input" style="margin-left:15px;"></p>
-                <p>Title <input th:field="*{title}" class="product_form__input" type="text" th:text="*{title}" style="margin-left:15px;"></p>
-                <p>Price <input th:field="*{price}" class="product_form__input" type="number" th:text="*{price}" style="margin-left:2px;"></p>
+<!--                <legend><h2>Введите новые значения товара id: </h2></legend>-->
+<!--                <p>ID <input th:field="*{id}" class="product_form__input" type="text" style="margin-left:15px;"></p>-->
+<!--                <p>Title <input th:field="*{title}" class="product_form__input" type="text" th:value="*{title}" style="margin-left:15px;"></p>-->
+                <p>Title <input th:field="*{title}" class="product_form__input" type="text" style="margin-left:15px;"></p>
+<!--                <p>Price <input th:field="*{price}" class="product_form__input" type="number" th:value="*{price}" style="margin-left:2px;"></p>-->
+                <p>Price <input th:field="*{price}" class="product_form__input" type="number" style="margin-left:2px;"></p>
                 <div class="product_form__buttons__div">
                     <button type="submit">Отправить</button>
                     <button type="reset">Очистить</button>
                 </div>
             </form>
         </div>
-    <label th:text="${product.id}"></label>
 
     </body>
 
