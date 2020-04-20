@@ -1,6 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<!-- объекты productPage, numbers и их методы - это встроенный механизм spring -->
+<!-- productPage - это атрибут определяемый в ProductController -->
+<!-- ?объект numbers и его методы - это встроенный механизм spring? -->
 <!--    <section class="pagination__div">-->
     <pag th:fragment="pagination" class="pagination__div">
         <div th:if="${productPage.hasContent()}" class="pagination">

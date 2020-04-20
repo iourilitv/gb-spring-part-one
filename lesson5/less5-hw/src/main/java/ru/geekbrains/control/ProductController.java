@@ -24,32 +24,16 @@ public class ProductController {
         this.productService = productService;
     }
 
-//    //@RequestParam(value = "maxPrice", required = false) - здесь работает только на
-//    // "/product" - http://localhost:8080/app/product!
-//    @GetMapping
-//    public String allProductsBetween(
-//            @RequestParam(value = "minPrice", required = false) BigDecimal minPrice,
-//            @RequestParam(value = "maxPrice", required = false) BigDecimal maxPrice,
-//            Model model) {
-//        //проверка, чтобы обработать запрос с пустыми параметрами
-//        //например - http://localhost:8080/app/product?minPrice=&maxPrice=20
-//        if(minPrice == null) {
-//            minPrice = BigDecimal.ZERO;
-//        }
-//        if(maxPrice == null) {
-//            maxPrice = BigDecimal.valueOf(Long.MAX_VALUE);
-//        }
-//        model.addAttribute("products",
-//                productService.getAllProductsByPriceBetween(minPrice, maxPrice));
-//        return "products";
-//    }
     @GetMapping
     public String allProducts(@RequestParam(value = "minPrice") Optional<BigDecimal> minPrice,
                              @RequestParam(value = "maxPrice") Optional<BigDecimal> maxPrice,
                              @RequestParam(value = "page") Optional<Integer> page,
                              @RequestParam(value = "limit") Optional<Integer> limit,
                              Model model) {
+        //добавляем атрибут активной страницы со значением страницы каталога
+        //см. в header.html
         model.addAttribute("activePage", "Products");
+        //устанавливаем атрибут для пагинации см. в pagination.html
         model.addAttribute("productPage", productService.findAllByAgeBetween(
                 minPrice, maxPrice,
                 PageRequest.of(page.orElse(1) - 1, limit.orElse(5))
@@ -59,13 +43,10 @@ public class ProductController {
         return "products";
     }
 
-//    @GetMapping("/form")
-//    public String formProduct(Model model) {
-//        model.addAttribute("product", new Product());
-//        return "product_form";
-//    }
     @GetMapping("/form")
     public String formProduct(@RequestParam(value = "id") Optional<Long> productId,  Model model) {
+        //добавляем атрибут активной страницы со значением страницы каталога
+        //см. в header.html
         model.addAttribute("activePage", "ProductForm");
         if(productId.isPresent()) {
             model.addAttribute("product", productService.findById(productId.get()));

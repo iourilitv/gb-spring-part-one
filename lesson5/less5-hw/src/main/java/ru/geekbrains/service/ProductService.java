@@ -67,10 +67,6 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-//    @Transactional(readOnly = true)
-//    public List<Product> getAllProductsByPriceBetween(BigDecimal minVal, BigDecimal maxVal) {
-//        return productRepository.filterProductsByPriceBetween(minVal, maxVal);
-//    }
     @Transactional(readOnly = true)
     public Page<Product> findAllByAgeBetween(
             Optional<BigDecimal> min, Optional<BigDecimal> max, Pageable pageable) {

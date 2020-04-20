@@ -5,7 +5,6 @@
 </head>
 <div class="container">
 
-<!--    <nav th:replace="fragments/header.html :: header"/>-->
     <header th:replace="fragments/header.html :: header (activePage=${activePage})"/>
 
     <body>
@@ -24,9 +23,8 @@
                 <th>price</th>
             </tr>
 
-<!--            <tr th:each="product : ${products}">-->
             <tr th:each="product : ${productPage.content}">
-<!--                <td th:text="${product.id}">id</td>-->
+                <!-- добавляем ссылку на id -->
                 <td><a th:href="@{/product/form(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>
                 <td th:text="${product.title}">title</td>
                 <td th:text="${product.price}">price</td>

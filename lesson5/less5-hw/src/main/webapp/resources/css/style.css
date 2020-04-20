@@ -119,7 +119,7 @@ button {
 	color: purple;
 }
 
-.header__menu__link.active{ /* есть */
+.header__menu__link.active { /* подсвечиваем активную страницу в меню */
 	background-color: #4CAFFF;
 	color: white;
 }
