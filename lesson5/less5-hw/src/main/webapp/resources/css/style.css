@@ -119,6 +119,11 @@ button {
 	color: purple;
 }
 
+.header__menu__link.active{ /* есть */
+	background-color: #4CAFFF;
+	color: white;
+}
+
 .welcome__div {
 	width: 70%;
 	margin: 10px auto;

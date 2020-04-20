@@ -59,9 +59,19 @@ public class ProductController {
         return "products";
     }
 
+//    @GetMapping("/form")
+//    public String formProduct(Model model) {
+//        model.addAttribute("product", new Product());
+//        return "product_form";
+//    }
     @GetMapping("/form")
-    public String formProduct(Model model) {
-        model.addAttribute("product", new Product());
+    public String formProduct(@RequestParam(value = "id") Optional<Long> productId,  Model model) {
+        model.addAttribute("activePage", "ProductForm");
+        if(productId.isPresent()) {
+            model.addAttribute("product", productService.findById(productId.get()));
+        } else {
+            model.addAttribute("product", new Product());
+        }
         return "product_form";
     }
 

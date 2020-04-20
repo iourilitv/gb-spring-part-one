@@ -5,7 +5,8 @@
 </head>
 <div class="container">
 
-    <header th:replace="fragments/header.html :: header "/>
+<!--    <header th:replace="fragments/header.html :: header "/>-->
+    <header th:replace="fragments/header.html :: header (activePage=${activePage})"/>
 
     <body>
         <div class="welcome__div">

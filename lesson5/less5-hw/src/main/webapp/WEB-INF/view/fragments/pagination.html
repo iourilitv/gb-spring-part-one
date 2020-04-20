@@ -1,7 +1,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- объекты productPage, numbers и их методы - это встроенный механизм spring -->
-    <section class="pagination__div">
+<!--    <section class="pagination__div">-->
+    <pag th:fragment="pagination" class="pagination__div">
         <div th:if="${productPage.hasContent()}" class="pagination">
             <a th:href="@{/product(page=${1}, limit=${productPage.size}, minPrice=${minPrice}, maxPrice=${maxPrice})}">&laquo;</a>
 
@@ -11,6 +12,6 @@
 
             <a th:href="@{/product(page=${productPage.totalPages}, limit=${productPage.size}, minPrice=${minPrice}, maxPrice=${maxPrice})}">&raquo;</a>
         </div>
-    </section>
+    </pag>
 
 </html>
