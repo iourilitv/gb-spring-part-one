@@ -50,10 +50,12 @@ public class ProductService {
             productRepository.save(product);
         }
     }
+
     @Transactional
     public void update(Product product) {
         //FIXME Не работает!!! Добавляем новый товар каждый раз.
-        productRepository.update(product.getId(), product.getTitle(), product.getPrice());
+//        productRepository.update(product.getId(), product.getTitle(), product.getPrice());
+        productRepository.save(product);
     }
 
     @Transactional(readOnly = true)

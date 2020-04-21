@@ -43,19 +43,20 @@ public class ProductController {
         return "products";
     }
 
-    @GetMapping("/form")
-    public String formProduct(@RequestParam(value = "productId") Optional<Long> productId,  Model model) {
-        //добавляем атрибут активной страницы со значением страницы каталога
-        //см. в header.html
-        model.addAttribute("activePage", "ProductForm");
-        if(productId.isPresent()) {
-            model.addAttribute("product", productService.findById(productId.get()));
-        } else {
-            model.addAttribute("product", new Product());
-        }
-        model.addAttribute("productId", productId.orElse(null));
-        return "product_form";
-    }
+//    @GetMapping("/form")
+//    public String formProduct(@RequestParam(value = "productId") Optional<Long> productId,  Model model) {
+//        //добавляем атрибут активной страницы со значением страницы каталога
+//        //см. в header.html
+//        model.addAttribute("activePage", "ProductForm");
+//        if(productId.isPresent()) {
+//            model.addAttribute("product", productService.findById(productId.get()));
+//        } else {
+//            model.addAttribute("product", new Product());
+//        }
+//        model.addAttribute("productId", productId.orElse(null));
+//        return "product_form";
+//    }
+
 
 //    @PostMapping("/form")
 //    public String newProduct(@Valid Product product, BindingResult bindingResult) {
@@ -65,23 +66,36 @@ public class ProductController {
 //        productService.insert(product);
 //        return "redirect:/product";
 //    }
+//    @PostMapping("/form")
+//    public String newProduct(@Valid Product product, BindingResult bindingResult,
+//                             @RequestParam(value = "productId") Optional<Long> productId) {
+//        if(bindingResult.hasErrors()) {
+//            return "product_form";
+//        }
+//        //FIXME Не работает!!! Добавляем новый товар каждый раз.
+////        if(product.getId() == null) {
+////            productService.insert(product);
+////        } else {
+////            productService.update(product);
+////        }
+//        //FIXME Не работает!!! Добавляем новый товар каждый раз.
+//        if(productId.isPresent()) {
+//            productService.update(product);
+//        } else {
+//            productService.insert(product);
+//        }
+//        return "redirect:/product";
+//    }
     @PostMapping("/form")
-    public String newProduct(@Valid Product product, BindingResult bindingResult,
-                             @RequestParam(value = "productId") Optional<Long> productId) {
+    public String newProduct(@Valid Product product, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "product_form";
         }
-        //FIXME Не работает!!! Добавляем новый товар каждый раз.
-//        if(product.getId() == null) {
-//            productService.insert(product);
-//        } else {
-//            productService.update(product);
-//        }
-        //FIXME Не работает!!! Добавляем новый товар каждый раз.
-        if(productId.isPresent()) {
-            productService.update(product);
-        } else {
+        //FIXME Не работает? Добавляет новый товар каждый раз.
+        if(product.getId() == null) {
             productService.insert(product);
+        } else {
+            productService.update(product);
         }
         return "redirect:/product";
     }

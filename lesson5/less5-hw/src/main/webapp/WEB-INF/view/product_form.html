@@ -26,6 +26,9 @@
                 <label th:text="'ID: ' + ${productId}"></label>
             </h2>
             <form th:action="@{/product/form}" th:object="${product}" method="post">
+                <!-- Без этого скрытого поля форма отправляется с id = null, из-за чего всегда создается новый товар -->
+                <input th:type="hidden" th:field="*{id}">
+
                 <p>Title <input th:field="*{title}" class="product_form__input" type="text" style="margin-left:15px;"></p>
                 <p>Price <input th:field="*{price}" class="product_form__input" type="number" style="margin-left:2px;"></p>
                 <div class="product_form__buttons__div">
