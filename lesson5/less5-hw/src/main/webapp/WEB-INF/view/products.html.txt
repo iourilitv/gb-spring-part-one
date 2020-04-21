@@ -25,8 +25,7 @@
 
             <tr th:each="product : ${productPage.content}">
                 <!-- добавляем ссылку на id -->
-<!--                <td><a th:href="@{/product/form(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>-->
-                <td><a th:href="@{/product/{productId}(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>
+                <td><a th:href="@{/product/form(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>
                 <td th:text="${product.title}">title</td>
                 <td th:text="${product.price}">price</td>
             </tr>

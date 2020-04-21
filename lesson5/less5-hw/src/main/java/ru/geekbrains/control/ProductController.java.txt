@@ -5,7 +5,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.entity.Product;
 import ru.geekbrains.service.ProductService;
 
@@ -15,12 +18,12 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/product")
-public class ProductController {
+public class ProductController2 {
 
     private final ProductService productService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController2(ProductService productService) {
         this.productService = productService;
     }
 
@@ -43,30 +46,20 @@ public class ProductController {
         return "products";
     }
 
-//    @GetMapping("/form")
-//    public String formProduct(@RequestParam(value = "productId") Optional<Long> productId,  Model model) {
-//        //добавляем атрибут активной страницы со значением страницы каталога
-//        //см. в header.html
-//        model.addAttribute("activePage", "ProductForm");
-//        if(productId.isPresent()) {
-//            model.addAttribute("product", productService.findById(productId.get()));
-//        } else {
-//            model.addAttribute("product", new Product());
-//        }
-//        model.addAttribute("productId", productId.orElse(null));
-//        return "product_form";
-//    }
-    @GetMapping("/{productId}")
-    public String editPerson(@PathVariable(value = "productId") Long productId, Model model) {
-        model.addAttribute("product", productService.findById(productId));
+    @GetMapping("/form")
+    public String formProduct(@RequestParam(value = "productId") Optional<Long> productId,  Model model) {
+        //добавляем атрибут активной страницы со значением страницы каталога
+        //см. в header.html
+        model.addAttribute("activePage", "ProductForm");
+        if(productId.isPresent()) {
+            model.addAttribute("product", productService.findById(productId.get()));
+        } else {
+            model.addAttribute("product", new Product());
+        }
+        model.addAttribute("productId", productId.orElse(null));
         return "product_form";
     }
 
-    @GetMapping("/form")
-    public String formProduct(Model model) {
-        model.addAttribute("product", new Product());
-        return "product_form";
-    }
 
     @PostMapping("/form")
     public String newProduct(@Valid Product product, BindingResult bindingResult) {
