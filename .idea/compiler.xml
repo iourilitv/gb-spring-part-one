@@ -9,6 +9,7 @@
         <module name="less5-hw" />
         <module name="hw" />
         <module name="hw-hibernate-console-bd-client" />
+        <module name="lesson6-hw-spr-boot" />
         <module name="less4-hw" />
         <module name="class-hibernate-lesson" />
         <module name="class-spring-mvc-example" />
@@ -16,8 +17,16 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="kuidreS" target="8" />
+      <module name="less6-hw" target="1.8" />
       <module name="lesson1" target="1.5" />
+      <module name="lesson6" target="1.8" />
       <module name="spring-mvc-example" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="less6-hw" options="-parameters" />
+      <module name="lesson6-hw-spr-boot" options="-parameters" />
+    </option>
   </component>
 </project>

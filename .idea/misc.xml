@@ -11,11 +11,13 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson6-hw-spr-boot/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/hw/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson6/pom.xml" />
         <option value="$PROJECT_DIR$/spring-mvc-example/pom.xml" />
       </set>
     </option>
