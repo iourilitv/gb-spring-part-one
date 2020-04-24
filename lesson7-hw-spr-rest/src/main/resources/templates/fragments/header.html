@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <header th:fragment="header (activePage)">
+        <div class="header__div">
+            <div class="main_logo">
+                <a th:href="@{/welcome}"><img class="main_logo" th:src="@{/resources/images/main-logo.png}" alt="Лого"></a>
+            </div>
+            <p>Интернет-магазин Бытовая техника.RU. Телефон: +7 495 000-0000</p>
+            <ul class ="header__menu">
+                <!-- проверяем какая страница активна и меняем стиль пункта меню - см. .header__menu__link.active в style.css -->
+                <!-- значения атрибута activePage устанавливается в контроллерах -->
+                <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/welcome}" th:classappend="${activePage == 'IndexPage'} ? 'active'" >Главная</a></li>
+                <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/product}" th:classappend="${activePage == 'Products'} ? 'active'" >Каталог</a></li>
+                <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/product/form}" th:classappend="${activePage == 'ProductForm'} ? 'active'" >Добавить товар</a></li>
+            </ul>
+        </div>
+    </header>
+
+</html>

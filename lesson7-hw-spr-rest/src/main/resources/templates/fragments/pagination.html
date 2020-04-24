@@ -1,0 +1,18 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- productPage - это атрибут определяемый в ProductController -->
+<!-- ?объект numbers и его методы - это встроенный механизм spring? -->
+<!--    <section class="pagination__div">-->
+    <pag th:fragment="pagination" class="pagination__div">
+        <div th:if="${productPage.hasContent()}" class="pagination">
+            <a th:href="@{/product(page=${1}, limit=${productPage.size}, minPrice=${minPrice}, maxPrice=${maxPrice})}">&laquo;</a>
+
+            <a th:each="num: ${#numbers.sequence(1, productPage.totalPages)}"
+               th:classappend="${num == productPage.number + 1} ? 'active'"
+               th:href="@{/product(page=${num}, limit=${productPage.size}, minPrice=${minPrice}, maxPrice=${maxPrice})}">[[${num}]]</a>
+
+            <a th:href="@{/product(page=${productPage.totalPages}, limit=${productPage.size}, minPrice=${minPrice}, maxPrice=${maxPrice})}">&raquo;</a>
+        </div>
+    </pag>
+
+</html>

@@ -12,6 +12,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/lesson6-hw-spr-boot/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson7-hw-spr-rest/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

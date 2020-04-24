@@ -10,6 +10,7 @@
         <module name="hw" />
         <module name="hw-hibernate-console-bd-client" />
         <module name="lesson6-hw-spr-boot" />
+        <module name="lesson7-hw-spr-rest" />
         <module name="less4-hw" />
         <module name="class-hibernate-lesson" />
         <module name="class-spring-mvc-example" />
@@ -27,6 +28,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="less6-hw" options="-parameters" />
       <module name="lesson6-hw-spr-boot" options="-parameters" />
+      <module name="lesson7-hw-spr-rest" options="-parameters" />
     </option>
   </component>
 </project>
