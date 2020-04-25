@@ -21,7 +21,7 @@ POST http://localhost:8080/app/api/v1/product
 Content-Type: application/json
 
 {
-  "id": 21,
+  "id": 1,
   "title": "product_test_wrong",
   "price": 222199.0
 }

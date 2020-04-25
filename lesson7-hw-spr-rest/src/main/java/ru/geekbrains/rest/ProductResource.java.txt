@@ -14,12 +14,12 @@ import java.util.List;
 
 @RequestMapping("/api/v1/product")
 @RestController
-public class ProductResource {
+public class ProductResource2 {
 
     private final ProductService productService;
 
     @Autowired
-    public ProductResource(ProductService productService) {
+    public ProductResource2(ProductService productService) {
         this.productService = productService;
     }
 
@@ -29,11 +29,22 @@ public class ProductResource {
         return productService.getAllProducts();
     }
 
+//    @GetMapping(path = "/{id}/id", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Product findById(@PathVariable("id") long id) {
+//        return productService.findById(id)
+//                .orElseThrow(NotFoundException::new);//по умолчанию вернет код ошибки 500 - ошибка на сервере
+//    }
     @GetMapping(path = "/{id}/id", produces = MediaType.APPLICATION_JSON_VALUE)
     public Product findById(@PathVariable("id") long id) {
         return productService.findById(id)
                 .orElseThrow(() -> new NotFoundException("The page is not found!"));//по умолчанию вернет код ошибки 500 - ошибка на сервере
     }
+    //Возвращает объект ответа в стандарте json
+      {
+        "status": 404,
+        "message": "The page is not found!",
+        "timestamp": 1587800167670
+      }
 
     @PostMapping
     public void createProduct(@RequestBody Product product) {
@@ -54,6 +65,11 @@ public class ProductResource {
         productService.deleteById(id);
     }
 
+//    //метод перехватывает ошибку 500 и возвращает 404
+//    @ExceptionHandler
+//    public ResponseEntity<String> notFoundExceptionHandler(NotFoundException exception) {
+//        return new ResponseEntity<>("The page is not found!", HttpStatus.NOT_FOUND);
+//    }
     //метод перехватывает ошибку 500 и возвращает 404
     @ExceptionHandler
     public ResponseEntity<ProductErrorResponse> notFoundExceptionHandler(NotFoundException exception) {
@@ -64,18 +80,9 @@ public class ProductResource {
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
-//    //метод перехватывает ошибку 500 и возвращает 400 - Bad request
-//    @ExceptionHandler
-//    public ResponseEntity<String> illegalArgumentExceptionHandler(IllegalArgumentException exception) {
-//        return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
-//    }
     //метод перехватывает ошибку 500 и возвращает 400 - Bad request
     @ExceptionHandler
-    public ResponseEntity<ProductErrorResponse> illegalArgumentExceptionHandler(IllegalArgumentException exception) {
-        ProductErrorResponse response = new ProductErrorResponse();
-        response.setStatus(HttpStatus.BAD_REQUEST.value());
-        response.setMessage(exception.getMessage());
-        response.setTimestamp(System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<String> illegalArgumentExceptionHandler(IllegalArgumentException exception) {
+        return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
     }
 }
