@@ -1,0 +1,44 @@
+GET http://localhost:8080/app/api/v1/product/all
+Accept: application/json
+
+###
+
+GET http://localhost:8080/app/api/v1/product/21/id
+
+###
+
+POST http://localhost:8080/app/api/v1/product
+Content-Type: application/json
+
+{
+  "title": "product_test_21",
+  "price": 2221.0
+}
+
+###
+
+POST http://localhost:8080/app/api/v1/product
+Content-Type: application/json
+
+{
+  "id": 21,
+  "title": "product_test_wrong",
+  "price": 222199.0
+}
+
+###
+
+PUT http://localhost:8080/app/api/v1/product
+Content-Type: application/json
+
+{
+  "id": 21,
+  "title": "product_test_21_updated",
+  "price": 222199.0
+}
+
+###
+
+DELETE http://localhost:8080/app/api/v1/product/21/id
+
+###

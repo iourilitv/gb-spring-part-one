@@ -56,6 +56,11 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    @Transactional
+    public void deleteById(long id) {
+        productRepository.deleteById(id);
+    }
+
     @Transactional(readOnly = true)
     public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
