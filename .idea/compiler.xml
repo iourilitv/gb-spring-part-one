@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="less5-hw" />
+        <module name="lesson7-hw-spr-rest" />
         <module name="hw" />
         <module name="hw-hibernate-console-bd-client" />
         <module name="lesson6-hw-spr-boot" />
-        <module name="lesson7-hw-spr-rest" />
+        <module name="less5-hw" />
         <module name="less4-hw" />
         <module name="class-hibernate-lesson" />
         <module name="class-spring-mvc-example" />
