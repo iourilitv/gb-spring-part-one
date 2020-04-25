@@ -64,11 +64,6 @@ public class ProductResource {
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
-//    //метод перехватывает ошибку 500 и возвращает 400 - Bad request
-//    @ExceptionHandler
-//    public ResponseEntity<String> illegalArgumentExceptionHandler(IllegalArgumentException exception) {
-//        return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
-//    }
     //метод перехватывает ошибку 500 и возвращает 400 - Bad request
     @ExceptionHandler
     public ResponseEntity<ProductErrorResponse> illegalArgumentExceptionHandler(IllegalArgumentException exception) {
@@ -78,4 +73,6 @@ public class ProductResource {
         response.setTimestamp(System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+
+
 }
