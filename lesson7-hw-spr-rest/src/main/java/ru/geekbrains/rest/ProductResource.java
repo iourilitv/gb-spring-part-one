@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.entity.Product;
 import ru.geekbrains.exception.NotFoundException;
+import ru.geekbrains.exception.ProductErrorResponse;
 import ru.geekbrains.service.ProductService;
 
 import java.util.List;
@@ -23,16 +24,20 @@ public class ProductResource {
     }
 
     //указываем формат данных в представлении REST ресурса
-    //TODO проверить, должен быть по умолчанию
     @GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)//produces = "application/json"
     public List<Product> findAll() {
         return productService.getAllProducts();
     }
 
+//    @GetMapping(path = "/{id}/id", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Product findById(@PathVariable("id") long id) {
+//        return productService.findById(id)
+//                .orElseThrow(NotFoundException::new);//по умолчанию вернет код ошибки 500 - ошибка на сервере
+//    }
     @GetMapping(path = "/{id}/id", produces = MediaType.APPLICATION_JSON_VALUE)
     public Product findById(@PathVariable("id") long id) {
         return productService.findById(id)
-                .orElseThrow(NotFoundException::new);//по умолчанию вернет код ошибки 500 - ошибка на сервере
+                .orElseThrow(() -> new NotFoundException("The page is not found!"));//по умолчанию вернет код ошибки 500 - ошибка на сервере
     }
 
     @PostMapping
@@ -54,10 +59,19 @@ public class ProductResource {
         productService.deleteById(id);
     }
 
+//    //метод перехватывает ошибку 500 и возвращает 404
+//    @ExceptionHandler
+//    public ResponseEntity<String> notFoundExceptionHandler(NotFoundException exception) {
+//        return new ResponseEntity<>("The page is not found!", HttpStatus.NOT_FOUND);
+//    }
     //метод перехватывает ошибку 500 и возвращает 404
     @ExceptionHandler
-    public ResponseEntity<String> notFoundExceptionHandler(NotFoundException exception) {
-        return new ResponseEntity<>("The page is not found!", HttpStatus.NOT_FOUND);
+    public ResponseEntity<ProductErrorResponse> notFoundExceptionHandler(NotFoundException exception) {
+        ProductErrorResponse response = new ProductErrorResponse();
+        response.setStatus(HttpStatus.NOT_FOUND.value());
+        response.setMessage(exception.getMessage());
+        response.setTimestamp(System.currentTimeMillis());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
     //метод перехватывает ошибку 500 и возвращает 400 - Bad request
