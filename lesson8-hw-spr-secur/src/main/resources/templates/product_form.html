@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+    <title>Product_form</title>
+</head>
+<div class="container">
+
+    <header th:replace="fragments/header.html :: header (activePage=${activePage})"/>
+
+    <body>
+        <div th:if="${productId} == null" class="product_form__div">
+            <h1>Добавить товар</h1>
+            <form th:action="@{/product/form}" th:object="${product}" method="post">
+                <legend><h2>Заполните форму</h2></legend>
+                <p>Title <input th:field="*{title}" class="product_form__input" type="text" placeholder="Insert title" style="margin-left:15px;"></p>
+                <p>Price <input th:field="*{price}" class="product_form__input" type="number" placeholder="Insert price" style="margin-left:2px;"></p>
+                <div class="product_form__buttons__div">
+                    <button type="submit">Отправить</button>
+                </div>
+            </form>
+        </div>
+        <div th:unless="${productId} == null" class="product_form__div">
+            <h1>Изменить товар</h1>
+            <h2>
+                <label th:text="'ID: ' + ${productId}"></label>
+            </h2>
+            <form th:action="@{/product/form}" th:object="${product}" method="post">
+                <!-- Без этого скрытого поля форма отправляется с id = null, из-за чего всегда создается новый товар -->
+                <input th:type="hidden" th:field="*{id}">
+
+                <p>Title <input th:field="*{title}" class="product_form__input" type="text" style="margin-left:15px;"></p>
+                <p>Price <input th:field="*{price}" class="product_form__input" type="number" style="margin-left:2px;"></p>
+                <div class="product_form__buttons__div">
+                    <button type="submit">Отправить</button>
+                </div>
+            </form>
+        </div>
+
+    </body>
+
+    <footer th:replace="fragments/footer.html" :: footer />
+
+</div>
+</html>
