@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="lesson8-hw-spr-secur" />
         <module name="lesson7-hw-spr-rest" />
         <module name="hw" />
         <module name="hw-hibernate-console-bd-client" />
@@ -29,6 +30,7 @@
       <module name="less6-hw" options="-parameters" />
       <module name="lesson6-hw-spr-boot" options="-parameters" />
       <module name="lesson7-hw-spr-rest" options="-parameters" />
+      <module name="lesson8-hw-spr-secur" options="-parameters" />
     </option>
   </component>
 </project>

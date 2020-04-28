@@ -14,6 +14,8 @@
         <module>lesson4</module>
         <module>lesson5</module>
         <module>lesson6-hw-spr-boot</module>
+        <module>lesson7-hw-spr-rest</module>
+        <module>lesson8-hw-spr-secur</module>
     </modules>
 
     <properties>
