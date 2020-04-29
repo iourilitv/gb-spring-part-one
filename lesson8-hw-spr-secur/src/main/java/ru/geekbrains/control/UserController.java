@@ -1,19 +1,18 @@
 package ru.geekbrains.control;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.repository.RoleRepository;
 import ru.geekbrains.exception.NotFoundException;
 import ru.geekbrains.service.UserRepr;
 import ru.geekbrains.service.UserService;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -28,9 +27,20 @@ public class UserController {
         this.roleRepository = roleRepository;
     }
 
+//    @GetMapping
+//    public String allUsers(Model model) {
+//        model.addAttribute("activePage", "Users");
+//        model.addAttribute("users", userService.findAll());
+//        return "users";
+//    }
     @GetMapping
-    public String allUsers(Model model) {
+    public String allUsers(@RequestParam(value = "page") Optional<Integer> page,
+                           @RequestParam(value = "limit") Optional<Integer> limit,
+                           Model model) {
         model.addAttribute("activePage", "Users");
+        model.addAttribute("userPage", userService.findAll(
+                PageRequest.of(page.orElse(1) - 1, limit.orElse(5))
+        ));
         model.addAttribute("users", userService.findAll());
         return "users";
     }

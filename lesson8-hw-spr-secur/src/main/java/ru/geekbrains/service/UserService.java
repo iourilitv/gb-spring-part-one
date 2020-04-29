@@ -1,12 +1,16 @@
 package ru.geekbrains.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.geekbrains.entity.Product;
 import ru.geekbrains.entity.User;
 import ru.geekbrains.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,6 +41,10 @@ public class UserService {
         return userRepository.findAll().stream()
                 .map(UserRepr::new)
                 .collect(Collectors.toList());
+    }
+
+    public Page<User> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
     public Optional<UserRepr> findById(Long id) {
