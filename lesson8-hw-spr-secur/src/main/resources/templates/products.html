@@ -13,6 +13,7 @@
     <body>
         <div class="product__h1_div">
             <div><h1>Product list</h1></div>
+            <!-- отображаем ссылку только пользователям менеджер, админ и суперадмин -->
             <div sec:authorize="hasRole('MANAGER') or hasRole('ADMIN') or hasRole('SUPERADMIN')"><a th:href="@{/product/form}">Create product</a></div>
         </div>
 
@@ -32,9 +33,10 @@
             </tr>
 
             <tr th:each="product : ${productPage.content}">
-<!--                <td><a th:href="@{/product/{productId}(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>-->
+                <!-- отображаем ссылку на id только пользователям менеджер, админ и суперадмин -->
                 <td sec:authorize="hasRole('MANAGER') or hasRole('ADMIN') or hasRole('SUPERADMIN')"><a th:href="@{/product/{productId}(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>
                 <td sec:authorize="isAnonymous() or hasRole('GUEST')"><span th:text="${product.id}">id</span></td>
+
                 <td th:text="${product.title}">title</td>
                 <td th:text="${product.price}">price</td>
             </tr>

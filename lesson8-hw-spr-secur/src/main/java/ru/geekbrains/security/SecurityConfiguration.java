@@ -45,7 +45,6 @@ public class SecurityConfiguration {
                     .antMatcher("/api/**")
                     .authorizeRequests()
                     .anyRequest()
-//                    .hasAnyRole("ADMIN", "GUEST")
                     .hasAnyRole("GUEST", "MANAGER", "ADMIN", "SUPERADMIN")
                     .and()
                     .httpBasic(Customizer.withDefaults())
@@ -63,16 +62,14 @@ public class SecurityConfiguration {
         protected void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
-//                    .antMatchers("/resources/*").permitAll()
-                      .antMatchers("/resources/**").permitAll()
-//                    .antMatchers("/product/**").permitAll()
+                    //чтобы стили и картинки применялись для всех пользователей
+                    .antMatchers("/resources/**").permitAll()
                     .antMatchers("/").permitAll()
                     .antMatchers("/welcome").permitAll()
                     .antMatchers("/product").permitAll()
                     .antMatchers("/product/**").hasAnyRole("MANAGER", "ADMIN", "SUPERADMIN")
 
-                    //TODO сначала нужно создать админа через форму, т.к. в БД напрямую нельзя из-за шифрования пароля
-//                    .antMatchers("/user/**").hasRole("ADMIN")
+                    //TODO сначала нужно создать суперадмина через форму, т.к. в БД напрямую нельзя из-за шифрования пароля
                     .antMatchers("/user").hasAnyRole("ADMIN", "SUPERADMIN")
 //                    .antMatchers("/user/**").permitAll()//временно открываем всем
                     .antMatchers("/user/**").hasRole("SUPERADMIN")

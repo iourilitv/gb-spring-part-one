@@ -43,19 +43,6 @@ public class ProductController {
         return "products";
     }
 
-//    @GetMapping("/form")
-//    public String formProduct(@RequestParam(value = "productId") Optional<Long> productId,  Model model) {
-//        //добавляем атрибут активной страницы со значением страницы каталога
-//        //см. в header.html
-//        model.addAttribute("activePage", "ProductForm");
-//        if(productId.isPresent()) {
-//            model.addAttribute("product", productService.findById(productId.get()));
-//        } else {
-//            model.addAttribute("product", new Product());
-//        }
-//        model.addAttribute("productId", productId.orElse(null));
-//        return "product_form";
-//    }
     @GetMapping("/{productId}")
     public String editPerson(@PathVariable(value = "productId") Long productId, Model model) {
         model.addAttribute("product", productService.findById(productId));

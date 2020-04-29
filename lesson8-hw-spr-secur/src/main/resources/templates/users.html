@@ -13,7 +13,7 @@
     <body>
         <div class="user__h1_div">
             <div><h1>User list</h1></div>
-            <!-- -->
+            <!-- отображаем ссылку только пользователю с ролью SUPERADMIN -->
             <div sec:authorize="hasRole('SUPERADMIN')"><a th:href="@{/user/form}">Create user</a></div>
         </div>
 
@@ -24,26 +24,15 @@
             </tr>
 
             <tr th:each="user : ${users}">
-                <!-- добавляем ссылку на id только для пользователя с ролью SUPERADMIN-->
-<!--                <td><a th:href="@{/user/{userId}(userId = ${user.id})}"><span th:text="${user.id}">id</span></a></td>-->
-<!--                    <td sec:authorize="hasRole('SUPERADMIN')"><a th:href="@{/user/{userId}(userId = ${user.id})}"><span th:text="${user.id}">id</span></a></td>-->
+                <!-- отображаем ссылку на id только пользователю с ролью SUPERADMIN -->
                 <line sec:authorize="hasRole('SUPERADMIN')">
                     <td><a th:href="@{/user/{userId}(userId = ${user.id})}"><span th:text="${user.id}">id</span></a></td>
                     <td th:text="${user.username}">username</td>
                 </line>
-<!--                <line th:if="${user.username} !='superadmin'") >-->
-<!--                    <td sec:authorize="hasRole('ADMIN')"><span th:text="${user.id}">id</span></td>-->
-<!--                    <td th:text="${user.username}">username</td>-->
-<!--                </line>-->
-                <!-- Не показываем в списке пользователя superadmin для пользователя с ролью ADMIN-->
-<!--                <line sec:authorize="hasRole('ADMIN')" th:if="${user.username} !='superadmin'" >-->
-<!--                    <td><span th:text="${user.id}">id</span></td>-->
-<!--                    <td th:text="${user.username}">username</td>-->
-<!--                </line>-->
+                <!-- этот блок показываем админам. цикл, т.к. ролей у пользователей множество -->
                 <line sec:authorize="hasRole('ADMIN')" th:each="role : ${user.roles}">
-                    <!-- Не показываем в списке пользователя с ролью SUPERADMIN для пользователя с ролью ADMIN-->
+                    <!-- Не показываем в списке пользователя с ролью SUPERADMIN -->
                     <line th:if="${role.getName()} !='ROLE_SUPERADMIN'" >
-<!--                        <td><span th:text="${user.id} + ' ' + ${role.getName()}">id</span></td>-->
                         <td><span th:text="${user.id}">id</span></td>
                         <td th:text="${user.username}">username</td>
                     </line>
