@@ -17,28 +17,12 @@
             <div sec:authorize="hasRole('SUPERADMIN')"><a th:href="@{/user/form}">Create user</a></div>
         </div>
 
-<!--        <table th:unless="${users.isEmpty()}">-->
         <table th:if="${userPage.hasContent()}">
             <tr>
                 <th>id</th>
                 <th>username</th>
             </tr>
 
-<!--            <tr th:each="user : ${users}">-->
-<!--                &lt;!&ndash; отображаем ссылку на id только пользователю с ролью SUPERADMIN &ndash;&gt;-->
-<!--                <line sec:authorize="hasRole('SUPERADMIN')">-->
-<!--                    <td><a th:href="@{/user/{userId}(userId = ${user.id})}"><span th:text="${user.id}">id</span></a></td>-->
-<!--                    <td th:text="${user.username}">username</td>-->
-<!--                </line>-->
-<!--                &lt;!&ndash; этот блок показываем админам. цикл, т.к. ролей у пользователей множество &ndash;&gt;-->
-<!--                <line sec:authorize="hasRole('ADMIN')" th:each="role : ${user.roles}">-->
-<!--                    &lt;!&ndash; Не показываем в списке пользователя с ролью SUPERADMIN &ndash;&gt;-->
-<!--                    <line th:if="${role.getName()} !='ROLE_SUPERADMIN'" >-->
-<!--                        <td><span th:text="${user.id}">id</span></td>-->
-<!--                        <td th:text="${user.username}">username</td>-->
-<!--                    </line>-->
-<!--                </line>-->
-<!--            </tr>-->
             <tr th:each="user : ${userPage.content}">
                 <!-- отображаем ссылку на id только пользователю с ролью SUPERADMIN -->
                 <line sec:authorize="hasRole('SUPERADMIN')">
@@ -56,14 +40,10 @@
             </tr>
         </table>
 
-<!--        <div th:if="${users.isEmpty()}" class="user_data_empty_div">-->
-<!--            <h3>No data</h3>-->
-<!--        </div>-->
         <div th:unless="${userPage.hasContent()}" class="user_data_empty_div">
             <h3>No data</h3>
         </div>
 
-<!--    <pag th:if="${productPage.hasContent()}" th:replace="fragments/pagination.html" :: pagination />-->
         <pag th:if="${userPage.hasContent()}" class="pagination__div">
             <div th:if="${userPage.hasContent()}" class="pagination">
                 <a th:href="@{/user(page=${1}, limit=${userPage.size})}">&laquo;</a>
