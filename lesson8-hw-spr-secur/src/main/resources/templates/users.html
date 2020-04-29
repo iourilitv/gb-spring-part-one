@@ -1,0 +1,65 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>User</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+</head>
+<div class="container">
+
+    <header th:replace="fragments/header.html :: header (activePage=${activePage})"/>
+
+    <body>
+        <div class="user__h1_div">
+            <div><h1>User list</h1></div>
+            <!-- -->
+            <div sec:authorize="hasRole('SUPERADMIN')"><a th:href="@{/user/form}">Create user</a></div>
+        </div>
+
+        <table th:unless="${users.isEmpty()}">
+            <tr>
+                <th>id</th>
+                <th>username</th>
+            </tr>
+
+            <tr th:each="user : ${users}">
+                <!-- добавляем ссылку на id только для пользователя с ролью SUPERADMIN-->
+<!--                <td><a th:href="@{/user/{userId}(userId = ${user.id})}"><span th:text="${user.id}">id</span></a></td>-->
+<!--                    <td sec:authorize="hasRole('SUPERADMIN')"><a th:href="@{/user/{userId}(userId = ${user.id})}"><span th:text="${user.id}">id</span></a></td>-->
+                <line sec:authorize="hasRole('SUPERADMIN')">
+                    <td><a th:href="@{/user/{userId}(userId = ${user.id})}"><span th:text="${user.id}">id</span></a></td>
+                    <td th:text="${user.username}">username</td>
+                </line>
+<!--                <line th:if="${user.username} !='superadmin'") >-->
+<!--                    <td sec:authorize="hasRole('ADMIN')"><span th:text="${user.id}">id</span></td>-->
+<!--                    <td th:text="${user.username}">username</td>-->
+<!--                </line>-->
+                <!-- Не показываем в списке пользователя superadmin для пользователя с ролью ADMIN-->
+<!--                <line sec:authorize="hasRole('ADMIN')" th:if="${user.username} !='superadmin'" >-->
+<!--                    <td><span th:text="${user.id}">id</span></td>-->
+<!--                    <td th:text="${user.username}">username</td>-->
+<!--                </line>-->
+                <line sec:authorize="hasRole('ADMIN')" th:each="role : ${user.roles}">
+                    <!-- Не показываем в списке пользователя с ролью SUPERADMIN для пользователя с ролью ADMIN-->
+                    <line th:if="${role.getName()} !='ROLE_SUPERADMIN'" >
+<!--                        <td><span th:text="${user.id} + ' ' + ${role.getName()}">id</span></td>-->
+                        <td><span th:text="${user.id}">id</span></td>
+                        <td th:text="${user.username}">username</td>
+                    </line>
+                </line>
+            </tr>
+        </table>
+
+        <div th:if="${users.isEmpty()}" class="user_data_empty_div">
+            <h3>No data</h3>
+        </div>
+
+<!--    <pag th:if="${productPage.hasContent()}" th:replace="fragments/pagination.html" :: pagination />-->
+
+    </body>
+
+    <footer th:replace="fragments/footer.html" :: footer />
+
+</div>
+</html>

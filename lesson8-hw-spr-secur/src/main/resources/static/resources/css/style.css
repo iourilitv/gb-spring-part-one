@@ -14,7 +14,6 @@ html {
 }
 
 h1 {
-	/*width: inherit;*/
 	margin: 10px 0 10px 50px;
 }
 
@@ -59,7 +58,7 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url("images/header-bg.jpg");/* Не работает */
+	/*background-image: url("images/header-bg.jpg");*/  /* Не работает */
 }
 
 table {
@@ -134,6 +133,16 @@ button {
 	flex-direction: column;
 }
 
+.user__h1_div,
+.product__h1_div {
+	width: 60%;
+	margin: 10px auto;
+	display: flex;
+	/*justify-content: center;*/
+	align-items: center;/* странно - выравнивает по горизонтали*/
+	flex-direction: column;
+}
+
 .product__filler_div {
 	width: 60%;
 	margin: 10px auto;
@@ -146,6 +155,11 @@ button {
 	padding: 5px;
 }
 
+.user__form_control {
+
+}
+
+.user_form__div,
 .product_form__div {
 	width: 60%;
 	margin: 10px auto;
@@ -156,10 +170,16 @@ button {
 	flex-direction: column;
 }
 
+.user_form__buttons__div,
 .product_form__buttons__div { /* есть */
 	padding-bottom: 10px;
+	margin: 0 auto;
+	display: flex;
+	justify-items: center;
+	align-items: center;
 }
 
+.user_form__input,
 .product_form__input { /* есть */
 	width: 250px; 
 	height: 22px;
@@ -172,7 +192,8 @@ button {
 	text-decoration: none;
 }
 
-.product_unless_div {
+.user_data_empty_div,
+.product_data_empty_div {
 	width: 60%;
 	margin: 10px auto;
 	display: flex;

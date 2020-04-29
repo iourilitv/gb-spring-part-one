@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class WelcomeController {
 
+    //если запрос к корню, то пересылаем на страницу welcome
+    @GetMapping("")
+    public String rootPage(Model model) {
+        return "redirect:welcome";
+    }
+
     @GetMapping("/welcome")
     public String welcome(Model model) {
         //добавляем атрибут активной страницы со значением главной страницы

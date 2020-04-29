@@ -1,0 +1,51 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User form</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+</head>
+<div class="container">
+
+    <header th:replace="fragments/header.html :: header (activePage=${activePage})"/>
+
+    <body>
+        <div class="user_form__div">
+            <h1>User</h1>
+            <form th:action="@{/user/form}" th:object="${user}" method="post">
+                <input th:type="hidden" th:field="*{id}">
+                <div>
+                    <p>Username <input th:field="*{username}" class="user_form__input" type="text" placeholder="Insert username" style="margin-left:15px;"></p>
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Password don't match</p>
+                </div>
+
+                <div>
+                    <p>Password <input th:field="*{password}" class="user_form__input" type="password" placeholder="Insert password" style="margin-left:2px;"></p>
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password don't match</p>
+                </div>
+
+                <div>
+                    <p>Repeat password <input th:field="*{matchingPassword}" class="user_form__input" type="password" placeholder="Repeat password" style="margin-left:2px;"></p>
+                </div>
+
+                <div>
+                    <p>Roles:</p>
+                    <p>
+                        <select multiple class="user__form_control" id="roles" th:field="*{roles}" required>
+                            <option th:each="role : ${roles}"
+                                    th:text="${role.name}"
+                                    th:value="${role.id}"
+                                    th:selected="${user.roles?.contains(role)}"></option>
+                        </select>
+                    </p>
+                </div>
+
+                <div class="user_form__buttons__div">
+                    <button type="submit">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <footer th:replace="fragments/footer.html" :: footer />
+
+</div>
+</html>

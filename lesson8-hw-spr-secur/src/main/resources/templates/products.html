@@ -1,13 +1,20 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
     <title>Каталог</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
 </head>
 <div class="container">
 
     <header th:replace="fragments/header.html :: header (activePage=${activePage})"/>
 
     <body>
+        <div class="product__h1_div">
+            <div><h1>Product list</h1></div>
+            <div sec:authorize="hasRole('MANAGER') or hasRole('ADMIN') or hasRole('SUPERADMIN')"><a th:href="@{/product/form}">Create product</a></div>
+        </div>
 
         <div class="product__filler_div">
             <form method="get" th:action="@{/product}">
@@ -16,6 +23,7 @@
                 <button type="submit">Apply</button>
             </form>
         </div>
+
         <table th:if="${productPage.hasContent()}">
             <tr>
                 <th>id</th>
@@ -24,15 +32,15 @@
             </tr>
 
             <tr th:each="product : ${productPage.content}">
-                <!-- добавляем ссылку на id -->
-<!--                <td><a th:href="@{/product/form(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>-->
-                <td><a th:href="@{/product/{productId}(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>
+<!--                <td><a th:href="@{/product/{productId}(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>-->
+                <td sec:authorize="hasRole('MANAGER') or hasRole('ADMIN') or hasRole('SUPERADMIN')"><a th:href="@{/product/{productId}(productId = ${product.id})}"><span th:text="${product.id}">id</span></a></td>
+                <td sec:authorize="isAnonymous() or hasRole('GUEST')"><span th:text="${product.id}">id</span></td>
                 <td th:text="${product.title}">title</td>
                 <td th:text="${product.price}">price</td>
             </tr>
         </table>
 
-        <div th:unless="${productPage.hasContent()}" class="product_unless_div">
+        <div th:unless="${productPage.hasContent()}" class="product_data_empty_div">
             <h3>No data</h3>
         </div>
 

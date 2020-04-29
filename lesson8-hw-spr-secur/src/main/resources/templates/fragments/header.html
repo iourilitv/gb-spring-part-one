@@ -1,4 +1,6 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <header th:fragment="header (activePage)">
         <div class="header__div">
@@ -11,7 +13,10 @@
                 <!-- значения атрибута activePage устанавливается в контроллерах -->
                 <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/welcome}" th:classappend="${activePage == 'IndexPage'} ? 'active'" >Главная</a></li>
                 <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/product}" th:classappend="${activePage == 'Products'} ? 'active'" >Каталог</a></li>
-                <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/product/form}" th:classappend="${activePage == 'ProductForm'} ? 'active'" >Добавить товар</a></li>
+<!--                <li class ="header__menu__li"><a class ="header__menu__link" th:href="@{/product/form}" th:classappend="${activePage == 'ProductForm'} ? 'active'" >Добавить товар</a></li>-->
+                <li sec:authorize="hasRole('ADMIN') or hasRole('SUPERADMIN')" class ="header__menu__li"><a class ="header__menu__link" th:href="@{/user}" th:classappend="${activePage == 'Users'} ? 'active'" >Users</a></li>
+                <li sec:authorize="isAnonymous()" class ="header__menu__li"><a class ="header__menu__link" th:href="@{/login}" >Login</a></li>
+                <li sec:authorize="isAuthenticated()" class ="header__menu__li"><a class ="header__menu__link" th:href="@{/logout}" >Logout: </a><span sec:authentication="principal.username"></span></li>
             </ul>
         </div>
     </header>
